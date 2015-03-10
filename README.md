@@ -1,4 +1,5 @@
-# MDCL (1650)
+# MDCL (1650) <img src="https://cloud.githubusercontent.com/assets/1752021/6574510/266bfc90-c6fc-11e4-9924-ab9c86de9b3a.png" width="64" alt="Logo">
+
 An app to help you go from swimming zero to 1650 (MDCL) meters in six weeks.
 
 ## Technology
