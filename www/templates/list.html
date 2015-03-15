@@ -1,0 +1,20 @@
+<ion-view view-title="{{vm.title}}">
+    <ion-content>
+        <div class="list card">
+            <div class="item item-divider">
+                <h2>Your Progress</h2>
+                <progress max="{{vm.workouts.length}}" value="4"></progress>
+                <p>Completed 4 of {{vm.workouts.length}} workouts.</p>
+            </div>
+            <div class="item" ng-repeat="workout in vm.workouts">
+                <h2>Week {{workout.week}} &mdash; Day {{workout.day}}</h2>
+
+                <div class="row">
+                    <!--<div class="col" ng-repeat="rep in workout.reps">{{rep.qty}} x {{rep.distance}}</div>-->
+                </div>
+            </div>
+            <div class="item item-divider"><p>Note: All units above are in {{vm.units}}.</p>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
