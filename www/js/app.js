@@ -1,5 +1,5 @@
 (function () {
-    angular.module('mdcl', ['ionic'])
+    angular.module('mdcl', ['ionic', 'ngStorage'])
         .controller('SwimController', ['swimServiceFactory', SwimController])
         .controller('WorkoutController', ['swimServiceFactory', WorkoutController])
         .run(startup)
@@ -30,6 +30,12 @@
         vm.title = 'Workouts';
         vm.workouts = swimService.getWorkout();
         vm.units = swimService.units() || 'yards';
+        vm.numberCompleted = function() {
+            return vm.workouts.filter(function(e){return e.completed}).length;
+        };
+        vm.dateCompleted = function(workout) {
+            return moment(workout.completed).fromNow();
+        };
     }
 
     function config($stateProvider, $urlRouterProvider) {
