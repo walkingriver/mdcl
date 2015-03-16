@@ -15,6 +15,10 @@
             if (window.StatusBar) {
                 StatusBar.styleDefault();
             }
+            $cordovaActionSheet.show(options)
+                .then(function(btnIndex) {
+                    var index = btnIndex;
+                });
         });
     }
 
@@ -24,7 +28,7 @@
         vm.title = 'MDCL';
     }
 
-    function WorkoutController(swimService) {
+    function WorkoutController(swimService, $cordovaActionSheet) {
         var vm = this;
 
         vm.title = 'Workouts';
