@@ -6,15 +6,15 @@
                 <progress max="{{vm.workouts.length}}" value="{{vm.numberCompleted()}}"></progress>
                 <p>Completed {{vm.numberCompleted()}} of {{vm.workouts.length}} workouts.</p>
             </div>
-            <div class="item item-icon item-icon-right" ng-repeat="workout in vm.workouts">
+            <a href="#" class="item item-icon item-icon-right"  ng-class="{'balanced-bg':workout.completed}" ng-repeat="workout in vm.workouts">
                 <i class="icon ion-ios-more-outline"></i>
                 <h2>Week {{workout.week}} &mdash; Day {{workout.day}}</h2>
 
                 <div class="text-center">
-                    <span ng-show="workout.completed" class="balanced">Completed {{vm.dateCompleted(workout)}}</span>
+                    <span ng-show="workout.completed">Completed {{vm.dateCompleted(workout)}}</span>
                     <span ng-hide="workout.completed" class="energized">Not complete</span>
                 </div>
-            </div>
+            </a>
             <div class="item item-divider"><p>Note: All units above are in {{vm.units}}.</p>
             </div>
         </div>
