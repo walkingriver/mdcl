@@ -6,6 +6,7 @@
     background-size: cover;
 }
 
-.card {
+.list .card {
     opacity: 0.8;
+    border-right: 15px;
 }
