@@ -1,3 +1,5 @@
+<img src="https://trello-attachments.s3.amazonaws.com/550734f0ffba879f360e52ed/375x667/c13464dc958628802f0dac46f2c99555/upload_2015-03-16_at_3.54.32_pm.png" align="right" width="320" />
+
 # MDCL (1650) <img src="https://cloud.githubusercontent.com/assets/1752021/6574510/266bfc90-c6fc-11e4-9924-ab9c86de9b3a.png" width="64" alt="Logo">
 
 An app to help you go from swimming zero to 1650 (MDCL) meters in six weeks.
@@ -6,6 +8,7 @@ An app to help you go from swimming zero to 1650 (MDCL) meters in six weeks.
 The application will be used to demonstrate a simple cross-device development project using the [Ionic Framework](http://ionicframework.com/). Suggestions and Pull Requests are welcome.
 
 ## Primary Goals
+
 When complete the application should meet the following goals and objectives:
  * Allow a swimmer to track progress over a six-week period.
  * Display modes to show program overview, as well as details for an individual day.
