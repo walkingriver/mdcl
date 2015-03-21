@@ -7,7 +7,7 @@
                 <p>Completed {{vm.numberCompleted()}} of {{vm.workouts.length}} workouts.</p>
             </div>
             <a href="" class="item item-icon item-icon-right"
-               ng-class="{'balanced-bg':workout.completed}"
+               ng-class="{'mdcl-completed':workout.completed}"
                ng-click="vm.action(workout)"
                ng-repeat="workout in vm.workouts">
                 <i class="icon ion-ios-more-outline"></i>

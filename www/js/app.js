@@ -2,6 +2,7 @@
     angular.module('mdcl', ['ionic', 'ngStorage'])
         .controller('SwimController', ['swimServiceFactory', SwimController])
         .controller('WorkoutController', ['$ionicActionSheet', '$state', 'swimServiceFactory', WorkoutController])
+        .controller('DetailController', ['$scope', '$state', '$stateParams', '$ionicPopup', 'swimServiceFactory', DetailController])
         .run(startup)
         .config(config);
 
@@ -49,11 +50,11 @@
                     {text: '<b>Begin Workout</b> '}
                 ],
                 destructiveText: workout.completed ? 'Mark Incomplete' : 'Mark Completed',
-                titleText: 'Week ' + workout.week + '&mdash; Day' + workout.day,
+                titleText: 'Week ' + workout.week + '&mdash; Day ' + workout.day,
                 cancelText: 'Cancel',
                 cancel: function () {
                 },
-                destructiveButtonClicked: function() {
+                destructiveButtonClicked: function () {
                     if (workout.completed)
                         workout.completed = null;
                     else
@@ -64,7 +65,7 @@
                 buttonClicked: function (index) {
                     switch (index) {
                         case 0:
-                            $state.go('workout-detail');
+                            $state.go('workout-detail', {workoutId: workout.id});
                             break;
                         default:
                             break;
@@ -76,6 +77,41 @@
         }
     }
 
+    function DetailController($scope, $state, $stateParams, $ionicPopup, swimService) {
+        var vm = this;
+        var exiting = false;
+        var workoutId = $stateParams.workoutId;
+        vm.workout = swimService.getDetail(workoutId);
+        vm.units = swimService.units();
+
+        //$scope.$on('$stateChangeStart', preventExit);
+        //
+        //function preventExit(event, toState, toParams, fromState, fromParams) {
+        //    if (!vm.workout.completed && !exiting) {
+        //        event.preventDefault();
+        //
+        //        var popup = $ionicPopup.show({
+        //            template: '<p>Are you sure you want to exit the workout?</p>',
+        //            title: 'Exit Workout?',
+        //            subTitle: 'Did you complete the entire workout?',
+        //            buttons: [
+        //                {text: 'Complete', onTap: markComplete},
+        //                {text: 'Cancel', onTab: exitWorkout}
+        //            ]
+        //        });
+        //    }
+        //}
+        //
+        //function markComplete() {
+        //    vm.workout.completed = moment();
+        //    exitWorkout();
+        //}
+        //
+        //function exitWorkout() {
+        //    $state.goBack();
+        //}
+    }
+
     function config($stateProvider, $urlRouterProvider) {
         $stateProvider.state('index', {
             url: '',
@@ -85,6 +121,10 @@
             url: 'list',
             templateUrl: 'templates/list.html',
             controller: 'WorkoutController as vm'
+        }).state('workout-detail', {
+            url: 'detail/:workoutId',
+            templateUrl: 'templates/detail.html',
+            controller: 'DetailController as vm'
         });
     }
 })();

@@ -1,0 +1,26 @@
+<ion-view view-title="{{vm.title}}">
+    <ion-content>
+        <!-- The content of the page -->
+        <div class="list card">
+
+            <div class="item item-divider item-avatar">
+                <img src="img/swimmer.svg">
+
+                <h2>Zero to MDCL (1650)</h2>
+
+                <p>Week {{vm.workout.week}} &mdash; Day {{vm.workout.day}}</p>
+            </div>
+
+            <div class="item item-body" ng-repeat="rep in vm.workout.reps">
+                <div class="row" ng-repeat="n in [].constructor(rep.qty) track by $index">
+                    <h3 class="col col-75">Swim {{rep.distance}} {{vm.units}}</h2>
+                    <h3 class="col">Rest</h2>
+                </div>
+            </div>
+
+            <!--<div class="item">-->
+            <!--<pre>{{vm.workout | json}}</pre>-->
+            <!--</div>-->
+        </div>
+    </ion-content>
+</ion-view>
