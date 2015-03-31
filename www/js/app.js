@@ -56,9 +56,9 @@
                 },
                 destructiveButtonClicked: function () {
                     if (workout.completed)
-                        workout.completed = null;
+                        swimService.resetWorkout(workout);
                     else
-                        workout.completed = moment();
+                        swimService.completeWorkout(workout, moment());
 
                     return true;
                 },
