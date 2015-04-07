@@ -3,6 +3,7 @@
         .controller('SwimController', ['swimServiceFactory', SwimController])
         .controller('WorkoutController', ['$ionicActionSheet', '$state', 'swimServiceFactory', WorkoutController])
         .controller('DetailController', ['$scope', '$state', '$stateParams', '$ionicPopup', 'swimServiceFactory', DetailController])
+        .filter('convertLengths', convertLengths)
         .run(startup)
         .config(config);
 
@@ -13,11 +14,11 @@
             if (window.cordova && window.cordova.plugins.Keyboard) {
                 cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
             }
-            ;
+
             if (window.StatusBar) {
                 StatusBar.styleDefault();
             }
-            ;
+
         });
     }
 
@@ -83,6 +84,7 @@
         var workoutId = $stateParams.workoutId;
         vm.workout = swimService.getDetail(workoutId);
         vm.units = swimService.units();
+        vm.poolLength = 25;
 
         //$scope.$on('$stateChangeStart', preventExit);
         //
@@ -126,5 +128,26 @@
             templateUrl: 'templates/detail.html',
             controller: 'DetailController as vm'
         });
+    }
+
+    function convertLengths() {
+        return function(yards, lengthInYards, convertToUnits) {
+            yards = yards || 0;
+
+            switch (convertToUnits) {
+                case 'Yards':
+                case 'Meters':
+                    return yards;
+
+                case 'Feet':
+                    return yards * 3;
+
+                case 'Lengths':
+                    return Math.round(yards / lengthInYards);
+
+                case 'Laps':
+                    return Math.round(yards / (2 * lengthInYards));
+            }
+        }
     }
 })();
