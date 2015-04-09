@@ -6,4 +6,11 @@ platforms/
 plugins/
 www/lib/
 .idea/
+resources/**/
+*.keystore
 
+bower_components/
+components/
+tmp
+temp
+dist
