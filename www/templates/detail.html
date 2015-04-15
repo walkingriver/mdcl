@@ -2,31 +2,11 @@
     <ion-content>
         <!-- The content of the page -->
         <div class="list card">
-            <div class="item item-divider">
-                <div class="item">
-                    <label class="item item-input item-stacked-label">
-                        <span class="input-label">Enter Your Pool Length (in m or yd)</span>
-                        <input ng-model="vm.poolLength" type="number" min="1" max="1650" value="25" placeholder="">
-                    </label>
-                    <label class="item item-input item-select item-stacked-label">
-                        <div class="input-label">
-                            Show Workouts in:
-                            <select ng-model="vm.units">
-                                <option>Laps</option>
-                                <option>Lengths</option>
-                                <option>Yards</option>
-                                <option>Meters</option>
-                                <option>Feet</option>
-                            </select>
-                        </div>
-                    </label>
-                </div>
-            </div>
             <div class="item item-body" ng-repeat="rep in vm.workout.reps">
                 <div class="row" ng-repeat="n in [].constructor(rep.qty) track by $index">
-                    <h2 class="col col-75">Swim {{rep.distance|convertLengths:vm.poolLength:vm.units}} {{vm.units}}</h2>
-
-                    <h2 class="col">Rest: {{rep.rest}}</h2>
+                    <h2 class="col col-75">Swim {{rep.distance|convertLengths:vm.prefs.poolLength:vm.prefs.units}}
+                        {{vm.prefs.units}}</h2>
+                    <h2 class="col">Rest: {{rep.rest}} breaths</h2>
                 </div>
             </div>
         </div>

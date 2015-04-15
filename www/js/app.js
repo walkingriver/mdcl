@@ -2,7 +2,8 @@
     angular.module('mdcl', ['ionic', 'ngStorage'])
         .controller('SwimController', ['swimServiceFactory', SwimController])
         .controller('WorkoutController', ['$ionicActionSheet', '$state', 'swimServiceFactory', WorkoutController])
-        .controller('DetailController', ['$scope', '$state', '$stateParams', '$ionicPopup', 'swimServiceFactory', DetailController])
+        .controller('DetailController', ['$scope', '$state', '$stateParams', '$ionicPopup', 'swimServiceFactory',
+            'prefsServiceFactory', DetailController])
         .filter('convertLengths', convertLengths)
         .run(startup)
         .config(config);
@@ -33,7 +34,6 @@
 
         vm.title = 'Workouts';
         vm.workouts = swimService.getWorkout();
-        vm.units = swimService.units() || 'yards';
         vm.numberCompleted = function () {
             return vm.workouts.filter(function (e) {
                 return e.completed
@@ -78,40 +78,12 @@
         }
     }
 
-    function DetailController($scope, $state, $stateParams, $ionicPopup, swimService) {
+    function DetailController($scope, $state, $stateParams, $ionicPopup, swimService, prefsService) {
         var vm = this;
         var exiting = false;
         var workoutId = $stateParams.workoutId;
         vm.workout = swimService.getDetail(workoutId);
-        vm.units = swimService.units();
-        vm.poolLength = 25;
-
-        //$scope.$on('$stateChangeStart', preventExit);
-        //
-        //function preventExit(event, toState, toParams, fromState, fromParams) {
-        //    if (!vm.workout.completed && !exiting) {
-        //        event.preventDefault();
-        //
-        //        var popup = $ionicPopup.show({
-        //            template: '<p>Are you sure you want to exit the workout?</p>',
-        //            title: 'Exit Workout?',
-        //            subTitle: 'Did you complete the entire workout?',
-        //            buttons: [
-        //                {text: 'Complete', onTap: markComplete},
-        //                {text: 'Cancel', onTab: exitWorkout}
-        //            ]
-        //        });
-        //    }
-        //}
-        //
-        //function markComplete() {
-        //    vm.workout.completed = moment();
-        //    exitWorkout();
-        //}
-        //
-        //function exitWorkout() {
-        //    $state.goBack();
-        //}
+        vm.prefs = prefsService.getPrefs();
     }
 
     function config($stateProvider, $urlRouterProvider) {
@@ -127,6 +99,10 @@
             url: 'detail/:workoutId',
             templateUrl: 'templates/detail.html',
             controller: 'DetailController as vm'
+        }).state('prefs', {
+            url: 'prefs',
+            templateUrl: 'templates/prefs.html',
+            controller: 'PrefsController as vm'
         });
     }
 
