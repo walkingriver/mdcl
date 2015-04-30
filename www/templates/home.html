@@ -1,0 +1,35 @@
+<ion-view view-title="{{vm.title}}">
+    <ion-nav-buttons side="right">
+        <button ui-sref="prefs" class="button button-icon icon ion-gear-a"></button>
+    </ion-nav-buttons>
+    <ion-content>
+        <!-- The content of the page -->
+        <div class="list card">
+            <div class="item item-divider item-avatar">
+                <img src="img/swimmer.svg">
+
+                <h2>Zero to MDCL (1650)</h2>
+
+                <p>Your personal swim coach</p>
+            </div>
+
+            <div class="item item-body">
+                <img class="full-image" src="img/swimmer.jpg">
+            </div>
+
+            <div class="item item-body">
+                A six-week program to help you swim a mile non-stop.
+                Please note, this is only a swim tracking application. It is not an exercise program,
+                you should be reasonably healthy
+                and you should already know how to swim.
+                <button href="#" ui-sref="list" class="button button-block">
+                    I Agree. Let's Get Started</i>
+                </button>
+                This application was inspired by the information at
+                <a href="http://ruthkazez.com/SwimWorkouts/ZeroTo1mile.html" target="_blank">ZERO to 1650 in Six
+                    Weeks</a>
+                <p></p>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,22 @@
+<ion-view view-title="{{vm.title}}">
+    <ion-content>
+        <div class="list card">
+            <div class="item item-divider">
+                <h2>Your Progress</h2>
+                <progress max="{{vm.workouts.length}}" value="{{vm.numberCompleted()}}"></progress>
+                <p>Completed {{vm.numberCompleted()}} of {{vm.workouts.length}} workouts.</p>
+            </div>
+            <a href="" class="item item-icon item-icon-right"
+               ng-class="{'mdcl-completed':workout.completed}"
+               ng-click="vm.action(workout)"
+               ng-repeat="workout in vm.workouts">
+                <i class="icon ion-ios-more-outline"></i>
+                <h2>Week {{workout.week}} &mdash; Day {{workout.day}}</h2>
+
+                <div class="text-center">
+                    <span ng-show="workout.completed">Completed {{vm.dateCompleted(workout)}}</span>
+                </div>
+            </a>
+        </div>
+    </ion-content>
+</ion-view>

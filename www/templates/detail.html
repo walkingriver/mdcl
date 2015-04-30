@@ -1,0 +1,14 @@
+<ion-view view-title="Week {{vm.workout.week}} &mdash; Day {{vm.workout.day}}">
+    <ion-content>
+        <!-- The content of the page -->
+        <div class="list card">
+            <div class="item item-body" ng-repeat="rep in vm.workout.reps">
+                <div class="row" ng-repeat="n in [].constructor(rep.qty) track by $index">
+                    <h2 class="col col-75">Swim {{rep.distance|convertLengths:vm.prefs.poolLength:vm.prefs.units}}
+                        {{vm.prefs.units}}</h2>
+                    <h2 class="col">Rest: {{rep.rest}} breaths</h2>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
