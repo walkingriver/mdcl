@@ -7,11 +7,11 @@ The application will be used to demonstrate a simple cross-device development pr
 
 ## Primary Goals
 When complete the application should meet the following goals and objectives:
- * Allow a swimmer to track progress over a six-week period.
- * Display modes to show program overview, as well as details for an individual day.
- * Store progress for one user.
- * Allow swimmer to repeat individual days' programs.
- * Run on Android and iPhone.
+ * (DONE) Allow a swimmer to track progress over a six-week period.
+ * (DONE) Display modes to show program overview, as well as details for an individual day.
+ * (DONE) Store progress for one user.
+ * (DONE) Allow swimmer to repeat individual days' programs.
+ * (DONE) Run on Android and iPhone.
 
 ## Secondary Goals
  * Provide automatic converstion between meters, yards, feet, laps, and lengths, to allow for a different pool lengths.
@@ -25,3 +25,4 @@ When complete the application should meet the following goals and objectives:
  * Allow use of Social media accounts (Facebook, Twitter) to logon and store progress per user.
  * Use an ad-framework to demonstrate integrating ads into Ionic apps.
  * Provide a paid, ad-free, alternative (or use in-app purchase to remove ads).
+
