@@ -20,12 +20,17 @@
         }
 
         function getPrefs() {
-            return $localStorage.mdcl_prefs ||
+            var prefs = $localStorage.mdcl_prefs ||
                 resetPrefs();
+
+            if (!prefs.units) { prefs.units = 'yards'; }
+            if (!prefs.poolLength) { prefs.poolLength = 25; }
+            
+            return prefs;
         }
 
         function resetPrefs() {
-            var prefs = {units: 'yards', poolLength: 25};
+            var prefs = { units: 'yards', poolLength: 25 };
             $localStorage.mdcl_prefs = prefs;
             return prefs;
         }
