@@ -5,10 +5,11 @@
     "ionic": "driftyco/ionic-bower#1.0.0-rc.0"
   },
   "dependencies": {
-    "ngstorage": "~0.3.0",
+    "ionic": "driftyco/ionic-bower#master",
     "moment": "~2.9.0",
     "ngCordova": "~0.1.15-alpha",
-    "ionic": "driftyco/ionic-bower#master"
+    "ngstorage": "~0.3.0",
+    "pouchdb": "~4.0.1"
   },
   "resolutions": {
     "ionic": "1.0.0-rc.0",

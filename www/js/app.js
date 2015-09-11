@@ -1,7 +1,7 @@
 (function () {
     angular.module('mdcl', ['ionic', 'ngStorage', 'ngCordova'])
         .controller('SwimController', ['swimServiceFactory', SwimController])
-        .controller('WorkoutController', ['$ionicActionSheet', '$state', 'swimServiceFactory', WorkoutController])
+        .controller('WorkoutController', ['$ionicActionSheet', '$ionicPlatform', '$state', 'swimServiceFactory', WorkoutController])
         .controller('DetailController', ['$scope', '$state', '$stateParams', '$ionicPopup', 'swimServiceFactory',
             'prefsServiceFactory', DetailController])
         .filter('convertLengths', convertLengths)
@@ -29,26 +29,40 @@
         vm.title = 'MDCL';
     }
 
-    function WorkoutController($ionicActionSheet, $state, swimService) {
+    function WorkoutController($ionicActionSheet, $ionicPlatform, $state, swimService) {
         var vm = this;
 
         vm.title = 'Workouts';
-        vm.workouts = swimService.getWorkout();
+        vm.workouts;
         vm.numberCompleted = function () {
-            return vm.workouts.filter(function (e) {
-                return e.completed
-            }).length;
+            if (vm.workouts){
+                return vm.workouts.filter(function (e) {
+                    return e.completed
+                }).length;
+            }
+
+            return 0;
         };
         vm.dateCompleted = function (workout) {
             return moment(workout.completed).fromNow();
         };
         vm.action = action;
 
+        $ionicPlatform.ready(function () {
+            swimService.initDb()
+                .then(function () {
+                    swimService.getWorkout()
+                        .then(function (data) {
+                            vm.workouts = data;
+                        });
+                });
+        });
+
         function action(workout) {
             // Show the action sheet
             var hideSheet = $ionicActionSheet.show({
                 buttons: [
-                    {text: '<b>Begin Workout</b> '}
+                    { text: '<b>Begin Workout</b> ' }
                 ],
                 destructiveText: workout.completed ? 'Mark Incomplete' : 'Mark Completed',
                 titleText: 'Week ' + workout.week + '&mdash; Day ' + workout.day,
@@ -66,7 +80,7 @@
                 buttonClicked: function (index) {
                     switch (index) {
                         case 0:
-                            $state.go('workout-detail', {workoutId: workout.id});
+                            $state.go('workout-detail', { workoutId: workout.id });
                             break;
                         default:
                             break;
@@ -107,7 +121,7 @@
     }
 
     function convertLengths() {
-        return function(yards, lengthInYards, convertToUnits) {
+        return function (yards, lengthInYards, convertToUnits) {
             yards = yards || 0;
 
             switch (convertToUnits) {
