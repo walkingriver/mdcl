@@ -8,9 +8,12 @@ www/lib/
 .idea/
 resources/**/
 *.keystore
+.settings/
+.vscode/
 
 bower_components/
 components/
 tmp
 temp
 dist
+www/css/ionic.app.*

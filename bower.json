@@ -7,7 +7,7 @@
   "dependencies": {
     "ngstorage": "~0.3.0",
     "moment": "~2.9.0",
-    "ngCordova": "~0.1.12-alpha",
+    "ngCordova": "~0.1.15-alpha",
     "ionic": "driftyco/ionic-bower#master"
   },
   "resolutions": {

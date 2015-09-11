@@ -1,5 +1,5 @@
 (function () {
-    angular.module('mdcl', ['ionic', 'ngStorage'])
+    angular.module('mdcl', ['ionic', 'ngStorage', 'ngCordova'])
         .controller('SwimController', ['swimServiceFactory', SwimController])
         .controller('WorkoutController', ['$ionicActionSheet', '$state', 'swimServiceFactory', WorkoutController])
         .controller('DetailController', ['$scope', '$state', '$stateParams', '$ionicPopup', 'swimServiceFactory',
